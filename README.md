@@ -35,9 +35,6 @@ The project uses MediaPipe, an open-source framework developed by Google, to per
 
 2. Execute the main script to start the exercise detection and rep counting process:
 
-
-(Add any additional instructions or command-line arguments if applicable)
-
 3. The program will process each video in the "sample" folder, perform exercise recognition, count repetitions, and provide real-time feedback.
 
 
