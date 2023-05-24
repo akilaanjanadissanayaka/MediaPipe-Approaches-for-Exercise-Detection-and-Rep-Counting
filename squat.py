@@ -7,7 +7,7 @@ md_pose=md.solutions.pose
 count = 0
 position=None
 # cap =cv2.VideoCapture (0)
-cap = cv2.VideoCapture("sample\ssquat_17.mp4")  # For Video
+cap = cv2.VideoCapture("sample\squat_17.mp4")  # For Video
 cap.set(3, 500)
 cap.set(4, 500)
 
@@ -22,7 +22,7 @@ with md_pose.Pose(min_detection_confidence=0.7,min_tracking_confidence=0.7) as p
         ret, frame = cap.read()
         success, image=cap.read()
         if not success:
-            print("empty camera")
+            print("end with ",count," reps")
             break
         image=cv2.cvtColor (cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
         result=pose.process (image)
@@ -46,9 +46,11 @@ with md_pose.Pose(min_detection_confidence=0.7,min_tracking_confidence=0.7) as p
                 count += 1
                 print("count- ",count)
 
+        # Display the rep count on the video frame
+        cv2.putText(image, "Reps: " + str(count), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
-
-        cv2.imshow("Push-up counter",cv2.flip(image,1))
+        # cv2.imshow("Push-up counter",cv2.flip(image,1))
+        cv2.imshow("Push-up counter", image)
         # flipped_frame = cv2.flip(frame, 1)  # Flip the frame horizontally
         # cv2.imshow("Video", flipped_frame)
 
